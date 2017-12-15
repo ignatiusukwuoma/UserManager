@@ -1,0 +1,17 @@
+version: '2'
+
+# Services/containers to run
+services:
+  usermanager:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    volumes:
+      - ./:/app
+    depends_on:
+      - database
+
+  database:
+      image: mongo # specify image to build container from
