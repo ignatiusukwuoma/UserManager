@@ -9,7 +9,7 @@ services:
     links:
       - database
     volumes:
-      - ./:/app
+      - .:/opt/app
     depends_on:
       - database
 

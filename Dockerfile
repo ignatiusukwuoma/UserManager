@@ -1,15 +1,15 @@
-FROM node:boron
+FROM node:argon
+
+ADD package.json /tmp/package.json
+ADD package-lock.json /tmp/package-lock.json
+RUN cd /tmp && npm install
+RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
 # Create app directory
-RUN mkdir /app
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json /app/
-RUN npm install
+WORKDIR /opt/app
 
 # Copy our application into the working directory
-COPY . /app
+ADD . /opt/app
 EXPOSE 3000
 
 CMD ["npm", "start"]
